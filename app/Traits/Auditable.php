@@ -29,7 +29,7 @@ trait Auditable
             'subject_id'   => $model->id ?? null,
             'subject_type' => sprintf('%s#%s', get_class($model), $model->id) ?? null,
             'user_id'      => auth()->id() ?? null,
-            'properties'   => $changes ?: $model,
+            'properties'   => $changes ? json_encode($changes) : json_encode($model),
             'host'         => request()->ip() ?? null,
         ]);
     }
