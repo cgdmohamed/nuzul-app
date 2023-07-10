@@ -33,11 +33,14 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'middleware' => ['auth:sanctum']
 });
 
 //API Login
-//Route::post('login', [AuthController::class,'login']);
+Route::post('login', [AuthController::class,'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+Route::post('/reset-password', [AuthController::class, 'resetPassword']);
 
-Route::controller(JWTAuthController::class)->group(function () {
+/*Route::controller(JWTAuthController::class)->group(function () {
     Route::post('login', 'login');
     Route::post('logout', 'logout');
     //Route::post('register', 'register');
     Route::post('refresh', 'refresh');
 });
+*/
