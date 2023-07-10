@@ -7,6 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
+use Illuminate\Support\Str;
 class DataChangeEmailNotification extends Notification
 {
     use Queueable;
@@ -41,20 +42,22 @@ class DataChangeEmailNotification extends Notification
         $reasonName = data_get($this->payload['reason'], 'name', '');
         $reasonName = $reasonName ? ' ' . $reasonName : 'User';
 
+        $modelName = class_basename($this->payload['model']);
+
         return (new MailMessage())
             ->subject(sprintf(
                 '[%s]%s %s %s',
                 config('app.name'),
                 $reasonName,
                 $this->payload['action'],
-                $this->payload['model']
+                $modelName
             ))
             ->greeting('Hi' . $recipientName . ',')
             ->line(sprintf(
                 '%s **%s** entry **%s**',
                 $reasonName,
                 $this->payload['action'],
-                $this->payload['model']
+                $modelName
             ))
             ->line('Please log in if any action needs to be taken.')
             ->action('Login to ' . config('app.name'), url('/'))
