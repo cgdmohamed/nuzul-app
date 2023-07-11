@@ -8,7 +8,7 @@ use App\Traits\Auditable;
 use App\Traits\HasTeam;
 use Carbon\Carbon;
 use DateTimeInterface;
-use Hash;
+use Illuminate\Support\Facades\Hash;;
 use Illuminate\Contracts\Translation\HasLocalePreference;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -17,13 +17,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-// JWT Work
-use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
 
 
-
-class User extends Authenticatable implements JWTSubject, HasLocalePreference
+class User extends Authenticatable implements HasLocalePreference
 {
     use HasApiTokens, HasFactory, HasAdvancedFilter, Notifiable, HasTeam, SoftDeletes, Auditable;
 

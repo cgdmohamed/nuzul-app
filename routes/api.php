@@ -9,7 +9,6 @@ use App\Http\Controllers\Api\V1\Admin\UnitApiController;
 use App\Http\Controllers\Api\V1\Admin\UserAlertApiController;
 use App\Http\Controllers\Api\V1\Admin\UserApiController;
 use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\JWTAuthController;
 
 Route::group(['prefix' => 'v1', 'as' => 'api.', 'middleware' => ['auth:sanctum']], function () {
     // Users
