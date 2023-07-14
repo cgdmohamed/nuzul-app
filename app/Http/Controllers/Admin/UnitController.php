@@ -38,7 +38,7 @@ class UnitController extends Controller
     {
         abort_if(Gate::denies('unit_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $unit->load('unitLocation', 'bookedBy', 'team');
+        $unit->load('unitDistrict', 'bookedBy', 'team');
 
         return view('admin.unit.show', compact('unit'));
     }

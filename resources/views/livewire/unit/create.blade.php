@@ -20,14 +20,59 @@
             {{ trans('cruds.unit.fields.unit_code_helper') }}
         </div>
     </div>
-    <div class="form-group {{ $errors->has('unit.unit_location_id') ? 'invalid' : '' }}">
-        <label class="form-label required" for="unit_location">{{ trans('cruds.unit.fields.unit_location') }}</label>
-        <x-select-list class="form-control" required id="unit_location" name="unit_location" :options="$this->listsForFields['unit_location']" wire:model="unit.unit_location_id" />
+    <div class="form-group {{ $errors->has('unit.unit_city') ? 'invalid' : '' }}">
+        <label class="form-label required">{{ trans('cruds.unit.fields.unit_city') }}</label>
+        <select class="form-control" wire:model="unit.unit_city">
+            <option value="null" disabled>{{ trans('global.pleaseSelect') }}...</option>
+            @foreach($this->listsForFields['unit_city'] as $key => $value)
+                <option value="{{ $key }}">{{ $value }}</option>
+            @endforeach
+        </select>
         <div class="validation-message">
-            {{ $errors->first('unit.unit_location_id') }}
+            {{ $errors->first('unit.unit_city') }}
         </div>
         <div class="help-block">
-            {{ trans('cruds.unit.fields.unit_location_helper') }}
+            {{ trans('cruds.unit.fields.unit_city_helper') }}
+        </div>
+    </div>
+    <div class="form-group {{ $errors->has('unit.unit_district_id') ? 'invalid' : '' }}">
+        <label class="form-label required" for="unit_district">{{ trans('cruds.unit.fields.unit_district') }}</label>
+        <x-select-list class="form-control" required id="unit_district" name="unit_district" :options="$this->listsForFields['unit_district']" wire:model="unit.unit_district_id" />
+        <div class="validation-message">
+            {{ $errors->first('unit.unit_district_id') }}
+        </div>
+        <div class="help-block">
+            {{ trans('cruds.unit.fields.unit_district_helper') }}
+        </div>
+    </div>
+    <div class="form-group {{ $errors->has('unit.building_no') ? 'invalid' : '' }}">
+        <label class="form-label required" for="building_no">{{ trans('cruds.unit.fields.building_no') }}</label>
+        <input class="form-control" type="text" name="building_no" id="building_no" required wire:model.defer="unit.building_no">
+        <div class="validation-message">
+            {{ $errors->first('unit.building_no') }}
+        </div>
+        <div class="help-block">
+            {{ trans('cruds.unit.fields.building_no_helper') }}
+        </div>
+    </div>
+    <div class="form-group {{ $errors->has('unit.unit_latitude') ? 'invalid' : '' }}">
+        <label class="form-label required" for="unit_latitude">{{ trans('cruds.unit.fields.unit_latitude') }}</label>
+        <input class="form-control" type="number" name="unit_latitude" id="unit_latitude" required wire:model.defer="unit.unit_latitude" step="0.0000001">
+        <div class="validation-message">
+            {{ $errors->first('unit.unit_latitude') }}
+        </div>
+        <div class="help-block">
+            {{ trans('cruds.unit.fields.unit_latitude_helper') }}
+        </div>
+    </div>
+    <div class="form-group {{ $errors->has('unit.unit_longitude') ? 'invalid' : '' }}">
+        <label class="form-label required" for="unit_longitude">{{ trans('cruds.unit.fields.unit_longitude') }}</label>
+        <input class="form-control" type="number" name="unit_longitude" id="unit_longitude" required wire:model.defer="unit.unit_longitude" step="0.0000001">
+        <div class="validation-message">
+            {{ $errors->first('unit.unit_longitude') }}
+        </div>
+        <div class="help-block">
+            {{ trans('cruds.unit.fields.unit_longitude_helper') }}
         </div>
     </div>
     <div class="form-group {{ $errors->has('unit.unit_checkin') ? 'invalid' : '' }}">

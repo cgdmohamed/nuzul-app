@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Models\Unit;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Response;
 
@@ -32,10 +32,27 @@ class StoreUnitRequest extends FormRequest
             'unit_code' => [
                 'string',
                 'required',
+                'unique:units,unit_code',
             ],
-            'unit_location_id' => [
+            'unit_city' => [
+                'required',
+                'in:' . implode(',', array_keys(Unit::UNIT_CITY_SELECT)),
+            ],
+            'unit_district_id' => [
                 'integer',
                 'exists:locations,id',
+                'required',
+            ],
+            'building_no' => [
+                'string',
+                'required',
+            ],
+            'unit_latitude' => [
+                'numeric',
+                'required',
+            ],
+            'unit_longitude' => [
+                'numeric',
                 'required',
             ],
             'unit_checkin' => [

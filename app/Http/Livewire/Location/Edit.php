@@ -36,6 +36,11 @@ class Edit extends Component
                 'required',
                 'unique:locations,location_name,' . $this->location->id,
             ],
+            'location.district' => [
+                'string',
+                'required',
+                'unique:locations,district,' . $this->location->id,
+            ],
         ];
     }
 }

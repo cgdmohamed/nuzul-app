@@ -67,7 +67,7 @@ class Index extends Component
 
     public function render()
     {
-        $query = Unit::with(['unitLocation', 'bookedBy', 'team'])->advancedFilter([
+        $query = Unit::with(['unitDistrict', 'bookedBy', 'team'])->advancedFilter([
             's'               => $this->search ?: null,
             'order_column'    => $this->sortBy,
             'order_direction' => $this->sortDirection,

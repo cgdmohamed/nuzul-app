@@ -35,12 +35,44 @@
                         </tr>
                         <tr>
                             <th>
-                                {{ trans('cruds.unit.fields.unit_location') }}
+                                {{ trans('cruds.unit.fields.unit_city') }}
                             </th>
                             <td>
-                                @if($unit->unitLocation)
-                                    <span class="badge badge-relationship">{{ $unit->unitLocation->location_name ?? '' }}</span>
+                                {{ $unit->unit_city_label }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                {{ trans('cruds.unit.fields.unit_district') }}
+                            </th>
+                            <td>
+                                @if($unit->unitDistrict)
+                                    <span class="badge badge-relationship">{{ $unit->unitDistrict->district ?? '' }}</span>
                                 @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                {{ trans('cruds.unit.fields.building_no') }}
+                            </th>
+                            <td>
+                                {{ $unit->building_no }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                {{ trans('cruds.unit.fields.unit_latitude') }}
+                            </th>
+                            <td>
+                                {{ $unit->unit_latitude }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                {{ trans('cruds.unit.fields.unit_longitude') }}
+                            </th>
+                            <td>
+                                {{ $unit->unit_longitude }}
                             </td>
                         </tr>
                         <tr>

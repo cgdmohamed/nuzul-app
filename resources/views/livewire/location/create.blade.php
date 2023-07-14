@@ -10,6 +10,16 @@
             {{ trans('cruds.location.fields.location_name_helper') }}
         </div>
     </div>
+    <div class="form-group {{ $errors->has('location.district') ? 'invalid' : '' }}">
+        <label class="form-label required" for="district">{{ trans('cruds.location.fields.district') }}</label>
+        <input class="form-control" type="text" name="district" id="district" required wire:model.defer="location.district">
+        <div class="validation-message">
+            {{ $errors->first('location.district') }}
+        </div>
+        <div class="help-block">
+            {{ trans('cruds.location.fields.district_helper') }}
+        </div>
+    </div>
 
     <div class="form-group">
         <button class="btn btn-indigo mr-2" type="submit">

@@ -27,6 +27,7 @@ class Unit extends Model implements HasMedia
     public static $search = [
         'unit_name',
         'unit_code',
+        'unit_city',
     ];
 
     public const UNIT_STATUS_RADIO = [
@@ -45,10 +46,11 @@ class Unit extends Model implements HasMedia
     public $orderable = [
         'unit_name',
         'unit_code',
-        'unit_location.location_name',
+        'unit_city',
+        'unit_district.district',
+        'building_no',
         'unit_checkin',
         'unit_checkout',
-        'unit_lock',
         'unit_status',
         'booked_by.name',
         'booked_by.email',
@@ -57,10 +59,11 @@ class Unit extends Model implements HasMedia
     public $filterable = [
         'unit_name',
         'unit_code',
-        'unit_location.location_name',
+        'unit_city',
+        'unit_district.district',
+        'building_no',
         'unit_checkin',
         'unit_checkout',
-        'unit_lock',
         'unit_status',
         'booked_by.name',
         'booked_by.email',
@@ -83,7 +86,11 @@ class Unit extends Model implements HasMedia
     protected $fillable = [
         'unit_name',
         'unit_code',
-        'unit_location_id',
+        'unit_city',
+        'unit_district_id',
+        'building_no',
+        'unit_latitude',
+        'unit_longitude',
         'unit_checkin',
         'unit_checkout',
         'unit_lock',
@@ -102,6 +109,28 @@ class Unit extends Model implements HasMedia
         'outdoor_sitting_area',
         'office_desk',
         'balcony',
+    ];
+
+    public const UNIT_CITY_SELECT = [
+        'Riyadh'         => 'Riyadh',
+        'Jeddah'         => 'Jeddah',
+        'Mecca'          => 'Mecca',
+        'Medina'         => 'Medina',
+        'Dammam'         => 'Dammam',
+        'Taif'           => 'Taif',
+        'Buraidah'       => 'Buraidah',
+        'Tabuk'          => 'Tabuk',
+        'Abha'           => 'Abha',
+        'Khamis Mushait' => 'Khamis Mushait',
+        'Al-Khobar'      => 'Al Khobar',
+        'Al-Ahsa'        => 'Al Ahsa',
+        'Yanbu'          => 'Yanbu',
+        'Hail'           => 'Hail',
+        'Jubail'         => 'Jubail',
+        'Najran'         => 'Najran',
+        'Qatif'          => 'Qatif',
+        'Al-Hofuf'       => 'Al Hofuf',
+        'Arar'           => 'Arar',
     ];
 
     protected function serializeDate(DateTimeInterface $date)
@@ -127,7 +156,12 @@ class Unit extends Model implements HasMedia
             ->fit('crop', $thumbnailPreviewWidth, $thumbnailPreviewHeight);
     }
 
-    public function unitLocation()
+    public function getUnitCityLabelAttribute($value)
+    {
+        return static::UNIT_CITY_SELECT[$this->unit_city] ?? null;
+    }
+
+    public function unitDistrict()
     {
         return $this->belongsTo(Location::class);
     }

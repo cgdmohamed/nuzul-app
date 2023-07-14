@@ -20,7 +20,7 @@ class UnitApiController extends Controller
     {
         abort_if(Gate::denies('unit_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new UnitResource(Unit::with(['unitLocation', 'bookedBy', 'team'])->get());
+        return new UnitResource(Unit::with(['unitDistrict', 'bookedBy', 'team'])->get());
     }
 
     public function store(StoreUnitRequest $request)
@@ -40,7 +40,7 @@ class UnitApiController extends Controller
     {
         abort_if(Gate::denies('unit_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new UnitResource($unit->load(['unitLocation', 'bookedBy', 'team']));
+        return new UnitResource($unit->load(['unitDistrict', 'bookedBy', 'team']));
     }
 
     public function update(UpdateUnitRequest $request, Unit $unit)

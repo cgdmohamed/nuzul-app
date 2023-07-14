@@ -82,10 +82,27 @@ class Edit extends Component
             'unit.unit_code' => [
                 'string',
                 'required',
+                'unique:units,unit_code,' . $this->unit->id,
             ],
-            'unit.unit_location_id' => [
+            'unit.unit_city' => [
+                'required',
+                'in:' . implode(',', array_keys($this->listsForFields['unit_city'])),
+            ],
+            'unit.unit_district_id' => [
                 'integer',
                 'exists:locations,id',
+                'required',
+            ],
+            'unit.building_no' => [
+                'string',
+                'required',
+            ],
+            'unit.unit_latitude' => [
+                'numeric',
+                'required',
+            ],
+            'unit.unit_longitude' => [
+                'numeric',
                 'required',
             ],
             'unit.unit_checkin' => [
@@ -163,7 +180,8 @@ class Edit extends Component
 
     protected function initListsForFields(): void
     {
-        $this->listsForFields['unit_location'] = Location::pluck('location_name', 'id')->toArray();
+        $this->listsForFields['unit_city']     = $this->unit::UNIT_CITY_SELECT;
+        $this->listsForFields['unit_district'] = Location::pluck('district', 'id')->toArray();
         $this->listsForFields['unit_status']   = $this->unit::UNIT_STATUS_RADIO;
         $this->listsForFields['booked_by']     = User::pluck('name', 'id')->toArray();
     }

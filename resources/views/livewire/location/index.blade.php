@@ -45,6 +45,10 @@
                             @include('components.table.sort', ['field' => 'location_name'])
                         </th>
                         <th>
+                            {{ trans('cruds.location.fields.district') }}
+                            @include('components.table.sort', ['field' => 'district'])
+                        </th>
+                        <th>
                         </th>
                     </tr>
                 </thead>
@@ -56,6 +60,9 @@
                             </td>
                             <td>
                                 {{ $location->location_name }}
+                            </td>
+                            <td>
+                                {{ $location->district }}
                             </td>
                             <td>
                                 <div class="flex justify-end">

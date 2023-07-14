@@ -51,8 +51,20 @@
                             @include('components.table.sort', ['field' => 'unit_code'])
                         </th>
                         <th>
-                            {{ trans('cruds.unit.fields.unit_location') }}
-                            @include('components.table.sort', ['field' => 'unit_location.location_name'])
+                            {{ trans('cruds.unit.fields.unit_city') }}
+                            @include('components.table.sort', ['field' => 'unit_city'])
+                        </th>
+                        <th>
+                            {{ trans('cruds.unit.fields.unit_district') }}
+                            @include('components.table.sort', ['field' => 'unit_district.district'])
+                        </th>
+                        <th>
+                            {{ trans('cruds.location.fields.district') }}
+                            @include('components.table.sort', ['field' => 'unit_district.district'])
+                        </th>
+                        <th>
+                            {{ trans('cruds.unit.fields.building_no') }}
+                            @include('components.table.sort', ['field' => 'building_no'])
                         </th>
                         <th>
                             {{ trans('cruds.unit.fields.unit_checkin') }}
@@ -61,10 +73,6 @@
                         <th>
                             {{ trans('cruds.unit.fields.unit_checkout') }}
                             @include('components.table.sort', ['field' => 'unit_checkout'])
-                        </th>
-                        <th>
-                            {{ trans('cruds.unit.fields.unit_lock') }}
-                            @include('components.table.sort', ['field' => 'unit_lock'])
                         </th>
                         <th>
                             {{ trans('cruds.unit.fields.unit_status') }}
@@ -95,18 +103,26 @@
                                 {{ $unit->unit_code }}
                             </td>
                             <td>
-                                @if($unit->unitLocation)
-                                    <span class="badge badge-relationship">{{ $unit->unitLocation->location_name ?? '' }}</span>
+                                {{ $unit->unit_city_label }}
+                            </td>
+                            <td>
+                                @if($unit->unitDistrict)
+                                    <span class="badge badge-relationship">{{ $unit->unitDistrict->district ?? '' }}</span>
                                 @endif
+                            </td>
+                            <td>
+                                @if($unit->unitDistrict)
+                                    {{ $unit->unitDistrict->district ?? '' }}
+                                @endif
+                            </td>
+                            <td>
+                                {{ $unit->building_no }}
                             </td>
                             <td>
                                 {{ $unit->unit_checkin }}
                             </td>
                             <td>
                                 {{ $unit->unit_checkout }}
-                            </td>
-                            <td>
-                                {{ $unit->unit_lock }}
                             </td>
                             <td>
                                 {{ $unit->unit_status_label }}

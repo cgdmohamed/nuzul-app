@@ -33,6 +33,14 @@
                                 {{ $location->location_name }}
                             </td>
                         </tr>
+                        <tr>
+                            <th>
+                                {{ trans('cruds.location.fields.district') }}
+                            </th>
+                            <td>
+                                {{ $location->district }}
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
