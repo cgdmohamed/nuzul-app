@@ -10,7 +10,7 @@ class CreateLocationsTable extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('location_name')->unique();
+            $table->string('location_name');
             $table->string('district')->unique();
             $table->timestamps();
             $table->softDeletes();

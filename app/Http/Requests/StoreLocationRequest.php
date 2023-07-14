@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Models\Location;
-use Illuminate\Support\Facades\Gate;
+use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Response;
 
@@ -28,7 +28,6 @@ class StoreLocationRequest extends FormRequest
             'location_name' => [
                 'string',
                 'required',
-                'unique:locations,location_name',
             ],
             'district' => [
                 'string',

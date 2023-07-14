@@ -34,7 +34,6 @@ class Create extends Component
             'location.location_name' => [
                 'string',
                 'required',
-                'unique:locations,location_name',
             ],
             'location.district' => [
                 'string',

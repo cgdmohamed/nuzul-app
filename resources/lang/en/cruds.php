@@ -281,7 +281,7 @@ return [
         'fields'         => [
             'id'                   => 'ID',
             'id_helper'            => ' ',
-            'location_name'        => 'District',
+            'location_name'        => 'Location name',
             'location_name_helper' => ' ',
             'created_at'           => 'Created at',
             'created_at_helper'    => ' ',
