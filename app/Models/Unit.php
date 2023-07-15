@@ -22,6 +22,7 @@ class Unit extends Model implements HasMedia
 
     protected $appends = [
         'unit_images',
+        'map',
     ];
 
     public static $search = [
@@ -226,5 +227,13 @@ class Unit extends Model implements HasMedia
     public function team()
     {
         return $this->belongsTo(Team::class);
+    }
+
+    public function getMapAttribute()
+    {
+        return [
+            'latitude' => $this->unit_latitude,
+            'longitude' => $this->unit_longitude,
+        ];
     }
 }
