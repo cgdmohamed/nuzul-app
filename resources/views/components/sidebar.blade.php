@@ -118,6 +118,15 @@
                         </ul>
                     </li>
                 @endcan
+		@can('news_access')
+                    <li class="items-center">
+                        <a class="{{ request()->is("admin/newss*") ? "sidebar-nav-active" : "sidebar-nav" }}" href="{{ route("admin.newss.index") }}">
+                            <i class="fa-fw c-sidebar-nav-icon far fa-newspaper">
+                            </i>
+                            {{ trans('cruds.news.title') }}
+                        </a>
+                    </li>
+                @endcan
                 @can('user_management_access')
                     <li class="items-center">
                         <a class="has-sub {{ request()->is("admin/permissions*")||request()->is("admin/roles*")||request()->is("admin/users*")||request()->is("admin/teams*")||request()->is("admin/audit-logs*") ? "sidebar-nav-active" : "sidebar-nav" }}" href="#" onclick="window.openSubNav(this)">

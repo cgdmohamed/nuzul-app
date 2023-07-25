@@ -12,17 +12,34 @@ use Gate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
+//added namespaces
+use Illuminate\Support\Facades\Auth;
+
+
 class UnitApiController extends Controller
 {
     use MediaUploadTrait;
-
+    /*
     public function index()
     {
         abort_if(Gate::denies('unit_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new UnitResource(Unit::with(['unitDistrict', 'bookedBy', 'team'])->get());
     }
+*/
+    public function index()
+    {
+        abort_if(Gate::denies('unit_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+        $userId = Auth::id();
+
+        // Retrieve units where booked_by_id is equal to the authenticated user's ID
+        $units = Unit::where('booked_by_id', $userId)
+            ->with(['unitDistrict', 'bookedBy', 'team'])
+            ->get();
+
+        return new UnitResource($units);
+    }
     public function store(StoreUnitRequest $request)
     {
         $unit = Unit::create($request->validated());
@@ -49,14 +66,14 @@ class UnitApiController extends Controller
 
         if (count($unit->unit_unit_images) > 0) {
             foreach ($unit->unit_unit_images as $media) {
-                if (! in_array($media->file_name, $request->input('unit_unit_images', []))) {
+                if (!in_array($media->file_name, $request->input('unit_unit_images', []))) {
                     $media->delete();
                 }
             }
         }
         $media = $unit->unit_unit_images->pluck('file_name')->toArray();
         foreach ($request->input('unit_unit_images', []) as $file) {
-            if (count($media) === 0 || ! in_array($file, $media)) {
+            if (count($media) === 0 || !in_array($file, $media)) {
                 $unit->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('unit_unit_images');
             }
         }

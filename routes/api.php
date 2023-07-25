@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\V1\Admin\UnitApiController;
 use App\Http\Controllers\Api\V1\Admin\UserAlertApiController;
 use App\Http\Controllers\Api\V1\Admin\UserApiController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\V1\Admin\NewsApiController;
 
 Route::group(['prefix' => 'v1', 'as' => 'api.', 'middleware' => ['auth:sanctum']], function () {
     // Users
@@ -27,6 +28,10 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'middleware' => ['auth:sanctum']
 
     // Locations
     Route::apiResource('locations', LocationApiController::class);
+
+// News
+    Route::post('newss/media', [NewsApiController::class, 'storeMedia'])->name('newss.store_media');
+    Route::apiResource('newss', NewsApiController::class);
     
     //logout
 });

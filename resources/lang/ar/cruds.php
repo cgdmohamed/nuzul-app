@@ -295,5 +295,25 @@ return [
             'district_helper'      => 'For example: Al-Malga',
         ],
     ],
+'news' => [
+        'title'          => 'News',
+        'title_singular' => 'News',
+        'fields'         => [
+            'id'                  => 'ID',
+            'id_helper'           => ' ',
+            'post_name'           => 'Post Name',
+            'post_name_helper'    => ' ',
+            'post_content'        => 'Post Content',
+            'post_content_helper' => ' ',
+            'created_at'          => 'Created at',
+            'created_at_helper'   => ' ',
+            'updated_at'          => 'Updated at',
+            'updated_at_helper'   => ' ',
+            'deleted_at'          => 'Deleted at',
+            'deleted_at_helper'   => ' ',
+            'post_image'          => 'Post Feature Image',
+            'post_image_helper'   => ' ',
+        ],
+    ],
 
 ];

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\MobileAppSettingController;
+use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TaskCalendarController;
@@ -70,6 +71,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
 
     // Locations
     Route::resource('locations', LocationController::class, ['except' => ['store', 'update', 'destroy']]);
+
+    // News
+    Route::post('newss/media', [NewsController::class, 'storeMedia'])->name('newss.storeMedia');
+    Route::resource('newss', NewsController::class, ['except' => ['store', 'update', 'destroy']]);
 
     // Messages
     Route::get('messages', [MessageController::class, 'index'])->name('messages.index');

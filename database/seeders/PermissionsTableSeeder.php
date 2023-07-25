@@ -258,6 +258,26 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => 62,
                 'title' => 'location_access',
             ],
+            [
+                'id'    => 63,
+                'title' => 'news_create',
+            ],
+            [
+                'id'    => 64,
+                'title' => 'news_edit',
+            ],
+            [
+                'id'    => 65,
+                'title' => 'news_show',
+            ],
+            [
+                'id'    => 66,
+                'title' => 'news_delete',
+            ],
+            [
+                'id'    => 67,
+                'title' => 'news_access',
+            ],
         ];
 
         Permission::insert($permissions);

@@ -13,7 +13,6 @@ class CreateTasksTable extends Migration
             $table->string('name')->nullable();
             $table->longText('description')->nullable();
             $table->date('due_date')->nullable();
-            $table->integer('team_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
